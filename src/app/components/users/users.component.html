@@ -1,0 +1,68 @@
+<h4>Registro QACS TEAM</h4>
+<hr>
+<form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate="">
+
+    <div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre de usuario</label>
+            <div class="col-8">
+
+                <input class="form-control" type="text" placeholder="Nombre" name="name" [(ngModel)]="registro.name" required minlength="5" #nombre="ngModel">
+
+                <div *ngIf="nombre.errors?.required">
+                    Este campo es requerido!
+
+                </div>
+                <div *ngIf="nombre.errors?.minlength">
+                    Este campo requiere por lo menos {{nombre.errors.minlength.requiredLength}} caracteres!
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Password</label>
+            <div class="col-8">
+
+                <input class="form-control" type="password" placeholder="Contraseña" name="passwd" [(ngModel)]="registro.passwd" minlength="5" required #passwd="ngModel">
+
+                <div *ngIf="passwd.errors?.required">
+                    Este campo es requerido!
+                </div>
+
+                <div *ngIf="passwd.errors?.minlength">
+                    Este campo requiere por lo menos {{passwd.errors.minlength.requiredLength}} caracteres!
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Rol</label>
+        <div class="col-md-8">
+
+            <select class="form-control" placeholder="Puesto" name="roles" [(ngModel)]="registro.rol">
+                <option value="">Seleccione un puesto</option>
+                <option *ngFor="let roles of rol" [value]="roles.codigo">{{roles.adm}}</option>
+                <option *ngFor="let roles of rol" [value]="roles.codigo">{{ roles.vent }}</option>
+                <option *ngFor="let roles of rol" [value]="roles.codigo">{{ roles.usr }}</option>
+
+                </select>
+        </div>
+    </div>
+
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-8">
+            <button type="submit" class="btn btn-outline-primary">
+        Registrarse
+      </button>
+        </div>
+    </div>
+
+</form>
